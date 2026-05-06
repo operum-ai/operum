@@ -2,6 +2,35 @@
 
 All notable changes to Operum Desktop are documented here.
 
+## [0.23.0] - 2026-05-05
+
+### New Features
+
+- **Streaming activity updates** - Watch agent progress in real-time instead of waiting for long operations to complete
+- **Billing plan upgrades** - Upgrade your plan directly from the billing page without leaving the app
+
+### Improvements
+
+- **Session reliability** - Sessions now recover stashed work more reliably when restarting agents
+- **Multi-team support** - Sequential PR enforcement now works correctly across repositories in different teams
+- **Desktop environment awareness** - Agents now receive context about the Operum Desktop runtime, enabling better environment-aware behavior
+
+### Bug Fixes
+
+- Fixed duplicate messages appearing in the chat panel
+- Fixed agents not picking up new tasks on session startup
+- Fixed auto-merge state synchronization and locking issues
+- Fixed duplicate label-change events triggering multiple times
+- Fixed git push upstream tracking fallback for branches without explicit upstream config
+
+### For Developers
+
+- operum-core crate improvements - `cargo test` now runs successfully on clean Windows developer machines
+- Windows agent worktree isolation fixed - tests no longer fail due to platform-specific file handling
+- Stash recovery system now includes runtime depth cap to prevent accumulation across session restarts
+
+---
+
 ## [0.19.3] - 2026-04-15
 
 ### Fixed
