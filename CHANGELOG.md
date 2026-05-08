@@ -2,6 +2,20 @@
 
 All notable changes to Operum Desktop are documented here.
 
+## [0.24.0] - 2026-05-07
+
+### Added
+
+- **Sign out other devices** - New option in Settings → Security that invalidates all other active sessions while keeping the current device signed in
+
+### Fixed
+
+- Fixed knowledge-drift panel "Discard local" now provides proper feedback; clicking Discard when commit details can't be loaded shows an error toast instead of a silent non-response
+- Fixed IPC watcher duplicate triggers - self-assessment and label-change events no longer arrive in batches of 20+ copies
+- Fixed team creation with managed GitHub repo no longer fails with "temporarily unavailable" after the Quick Start onboarding path
+
+---
+
 ## [0.23.0] - 2026-05-05
 
 ### New Features
