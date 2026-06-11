@@ -1,14 +1,14 @@
 # Operum
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/alprimak/operum-feedback?style=social)](https://github.com/alprimak/operum-feedback/stargazers)
+[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/operum-ai/operum?style=social)](https://github.com/operum-ai/operum/stargazers)
 [![Works with Claude Code](https://img.shields.io/badge/Works%20with-Claude%20Code-blueviolet)](https://claude.ai/code)
 
 > *"Labor omnia vincit"* — Work conquers all
 
 **The complete multi-agent AI development team** — orchestrate 6 specialized Claude agents from a single desktop app.
 
-Operum (Latin: *of works*, from *opus*) automates your development, marketing, and community workflows with a team of AI agents that coordinate through a label-driven pipeline.
+Operum (Latin: *of works*, from *opus*) automates your development, marketing, and community workflows with a team of AI agents that coordinate through a label-driven pipeline — so a solo founder can ship like a full team.
 
 ## Download
 
@@ -16,11 +16,13 @@ Get the latest Operum desktop app:
 
 | Platform | Download |
 |----------|----------|
-| Linux | [.deb](https://github.com/alprimak/operum-feedback/releases/latest) · [AppImage](https://github.com/alprimak/operum-feedback/releases/latest) |
-| Windows | [.exe installer](https://github.com/alprimak/operum-feedback/releases/latest) |
-| macOS | [.dmg](https://github.com/alprimak/operum-feedback/releases/latest) |
+| Linux | [.deb](https://github.com/operum-ai/operum/releases/latest) · [AppImage](https://github.com/operum-ai/operum/releases/latest) |
+| Windows | [.exe installer](https://github.com/operum-ai/operum/releases/latest) |
+| macOS | [.dmg](https://github.com/operum-ai/operum/releases/latest) |
 
-[View all releases &rarr;](https://github.com/alprimak/operum-feedback/releases)
+[View all releases &rarr;](https://github.com/operum-ai/operum/releases)
+
+> **Requires** an active Claude Code (Max) subscription to run agents.
 
 ## How It Works
 
@@ -35,7 +37,7 @@ graph LR
     T -.->|"FAIL"| E
 ```
 
-Issues flow through the team automatically. Each agent owns specific pipeline stages, updates GitHub labels when done, and hands off to the next agent.
+Issues flow through the team automatically. Each agent owns specific pipeline stages and hands off to the next — while you stay in control as the founder.
 
 | Agent | Role | What It Does |
 |-------|------|-------------|
@@ -46,75 +48,32 @@ Issues flow through the team automatically. Each agent owns specific pipeline st
 | **Marketing** | Growth | SEO, content strategy, discoverability |
 | **Community** | Support | Monitors channels, responds to users |
 
-## Templates
+## Why Operum
 
-**The only public repo with production-tested 6-agent Claude Code orchestration.** Use these templates to build your own multi-agent AI system.
-
-### Agent Templates
-
-Define each agent's role, responsibilities, and step-by-step workflow.
-
-| Agent | Role | Template |
-|-------|------|----------|
-| PM | Orchestrates the team, manages pipeline | [`pm.md`](templates/agents/pm.md) |
-| Architect | Reviews tasks, provides architectural guidance | [`architect.md`](templates/agents/architect.md) |
-| Engineer | Implements features, writes code, creates PRs | [`engineer.md`](templates/agents/engineer.md) |
-| Tester | Tests PRs, reports results, approves for review | [`tester.md`](templates/agents/tester.md) |
-| Marketing | SEO, content strategy, growth initiatives | [`marketing.md`](templates/agents/marketing.md) |
-| Community | Discord/Twitter monitoring, user support | [`community.md`](templates/agents/community.md) |
-
-### Workflow Templates
-
-The coordination protocols that make multi-agent systems actually work.
-
-| Template | Description |
-|----------|-------------|
-| [Pipeline](templates/workflows/pipeline.md) | Label-driven issue flow: `backlog → needs-architecture → ready-for-dev → in-progress → needs-testing → needs-review → done` |
-| [IPC Protocol](templates/workflows/ipc.md) | File-based inter-agent communication with typed prefixes (`DONE:` / `REQUEST:` / `ERROR:`) |
-| [Branching](templates/workflows/branching.md) | Git workflow with agent home branches (`agent/{name}`) and feature branch conventions |
-| [Release](templates/workflows/release.md) | Semantic versioning and CI-driven release management |
-
-### Starter Kit
-
-Bootstrap a new multi-agent project in minutes.
-
-| File | Purpose |
-|------|---------|
-| [`CLAUDE.md.example`](templates/starter/CLAUDE.md.example) | Complete CLAUDE.md composing all templates |
-| [`project.toml`](templates/starter/project.toml) | Project metadata template |
-| [`goals.toml`](templates/starter/goals.toml) | Goals tracking template |
-
-[View all templates and quick start guide &rarr;](templates/README.md)
-
-## What Makes This Unique
-
-No other public repository provides these patterns:
-
-1. **Label-driven pipeline** — Issues flow through defined stages with clear agent ownership
-2. **File-based IPC** — Agents coordinate via trigger/response files with typed prefixes
-3. **Agent home branches** — Each agent gets a persistent `agent/{name}` branch for concurrent worktrees
-4. **Complete 6-role team** — PM, Architect, Engineer, Tester, Marketing, Community with handoff protocols
-5. **Event-driven coordination** — Agents respond to events, with self-assessment as backup
+- **A full team, solo** — six specialized agents cover architecture, code, QA, growth, and support.
+- **You stay in control** — approve what matters; the agents handle the busywork.
+- **Built on Claude** — powered by Anthropic's most capable models via Claude Code.
+- **Desktop-native** — your code and credentials stay on your machine.
 
 ## Submit Feedback
 
 ### Bug Reports
 
-Found an issue? [Create a bug report](https://github.com/alprimak/operum-feedback/issues/new?template=bug_report.md&labels=bug)
+Found an issue? [Create a bug report](https://github.com/operum-ai/operum/issues/new?template=bug_report.md&labels=bug)
 
 Please include:
-- Operum version (shown in bottom-left of the app)
+- Operum version (shown in the bottom-left of the app)
 - Operating system
 - Steps to reproduce
 - Expected vs actual behavior
 
 ### Feature Requests
 
-Have an idea? [Request a feature](https://github.com/alprimak/operum-feedback/issues/new?template=feature_request.md&labels=enhancement)
+Have an idea? [Request a feature](https://github.com/operum-ai/operum/issues/new?template=feature_request.md&labels=enhancement)
 
 ### General Discussion
 
-Questions or suggestions? [Start a discussion](https://github.com/alprimak/operum-feedback/discussions)
+Questions or suggestions? [Start a discussion](https://github.com/operum-ai/operum/discussions)
 
 ## Community
 
@@ -134,4 +93,4 @@ Questions or suggestions? [Start a discussion](https://github.com/alprimak/operu
 
 ---
 
-*Made with dedication by solo creators, for solo creators.*
+© 2026 Operum AI. All rights reserved. *Made with dedication by solo creators, for solo creators.*
