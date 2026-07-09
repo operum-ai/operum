@@ -1,3 +1,35 @@
+## [0.33.0] - 2026-07-09
+
+### What's New
+
+- **Integration health at a glance** — New indicator shows when your API credentials or integrations need attention, right in the UI
+- **Abuse reports now tracked** — Report misuse with confidence: you'll get a case ID and confirmation email for your records
+- **Legal pages just got reliable** — Account deletion, privacy, and terms pages now use secure server-side forms instead of email links
+
+### Improvements
+
+- **Agents recover automatically** — Long sessions or unexpected restarts? Agents bounce back cleanly without needing manual intervention
+- **Session management is more reliable** — Better handling of expired sessions and automatic recovery when you reconnect
+- **Logout actually clears your identity** — On shared machines, logging out now fully clears your GitHub credentials from the system
+- **Progress tracking is rock solid** — Progress cards now persist correctly across agent restarts and UI updates
+- **Schedules run on time** — Fixed reliability issues with scheduled tasks so your workflows stay consistent
+- **Light theme looks crisp** — Improved contrast and visual polish in light mode
+- **Chat and modals work smoothly** — Fixed layout and rendering issues in chat panels and modal dialogs
+
+### Bug Fixes
+
+- Fixed silent failures in team setup and role initialization
+- Resolved progress card duplicates and rendering glitches
+- Fixed modal chat display issues and styling inconsistencies
+- Improved reliability of file uploads and attachments
+- Better error messages when GitHub authentication expires
+
+### For Developers
+
+- Enhanced locking documentation for safer concurrent operations
+- Improved MCP git tool reliability with better error handling
+- Better observability for credential and auth state
+
 # Changelog
 
 All notable changes to Operum Desktop are documented here.
