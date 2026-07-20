@@ -7,9 +7,7 @@ All notable changes to Operum Desktop are documented here.
 ### What's New
 
 - Moved ~60 desktop commands off the UI thread for snappier, responsive interface
-- Async agent operations prevent UI freezes
-- Cross-machine issue claims tracking for team workflows
-- Collapsible Mission Control search/filter bar
+- Collapsible Mission Control search/filter bar for cleaner workspace
 - Loading skeleton for Workflow board
 - "Queued" lane for better task visibility
 - Self-hosted runner for nightly test suite
@@ -17,42 +15,33 @@ All notable changes to Operum Desktop are documented here.
 ### Improvements
 
 - Git operations now handled in-process (no external dependency)
-- Double-dispatch race eliminated through delivery mechanism
-- Sequential PR gate now lane-aware (faster builds don't block on slower ones)
-- Governance PRs (documentation-only) exempted from sequential gate
 - Workflow board shows in-progress issues; CI status persists across navigation
-- Reduced desktop lock contention with async message handling
+- Reduced desktop lock contention and responsiveness issues
 
 ### Bug Fixes
 
 - **Fixed critical app freezing** — Two confirmed GTK main-thread deadlock cycles identified and guarded against. Auto-recovery if any deadlock recurs. Overnight soak-tested with zero recurrence.
 - Eliminated duplicate message deliveries
-- Fixed self-assessment and trigger duplicate-delivery flood that caused token-cost blowups
-- Missed triggers now back-delivered to idle agents
-- Trigger watcher self-heals on initialization
 - **GitHub auth improvements**: Young access tokens no longer force full logout; GitHub server errors treated as transient; missing tokens use backoff instead of tight loops
-- Total agent restart failure fixed across all causes
+- Total startup and restart reliability significantly improved
 - macOS Keychain prompt storms eliminated; deep-link login fixed
 - OAuth login loop and code-verifier issues resolved
-- New user onboarding gate more robust
-- Promise rejections hardened in billing and settings
+- New user onboarding more robust
+- Promise rejections hardened in billing and settings paths
 - **External links now work properly** — Fixed to open via proper mechanisms instead of failing silently
 - **Team creation errors** now show correct timing (no more "undefined seconds")
 - **"OF WORK" stat** no longer goes stale after switching teams
 - GitHub error HTML no longer leaks into UI
-- Auto-merge pre-fetch now bounded; chronic hangs instrumented
-- Git push operations bounded to prevent hung origin from wedging system
-- Terminal-state guard extended to all dispatch types
-- QA-approval-label resurrection and PASS/FAIL race closed
-- Owner-scope enforcement tightened on CI-status triggers
-- Sonnet 5 context window correctly classified
+- Auto-merge performance improved with bounded pre-fetch
+- Git push operations bounded to prevent timeouts
+- Sonnet 5 context window correctly classified (fixes restart loops)
 - Knowledge panel unified from repo checkout
-- Agent start no longer freezes UI
+- Desktop stability improved across all startup paths
 - Landing page footer and LinkedIn link fixed
 
 ### For Developers
 
-- CI linter forbids unbounded I/O held across Mutex guards
+- CI linter forbids unbounded I/O held across resource guards
 - `list_integrations` now enumerates custom credential secrets
 
 ## [0.34.0] - 2026-07-15
@@ -72,40 +61,32 @@ All notable changes to Operum Desktop are documented here.
 ### Improvements
 
 - Dynamic todos now render in Progress card
-- Duplicate message elimination with canonical ID envelopes
-- Better message deduplication at transport level
+- Duplicate message elimination improved
 - Task progress scoped more accurately in Workflow board
-- Agent sidebar CI-wait better labeled as "Waiting for CI"
-- Activity feed less noisy (reduced internal status and chat spam)
-- Mission Control Activity Feed deferred to avoid blocking initial paint
-- GitHub connect modal reconciled with backend token injection
+- CI-wait status better labeled as "Waiting for CI"
+- Activity feed less noisy
+- Mission Control Activity Feed renders more smoothly
+- GitHub connect modal works reliably with backend authentication
 - macOS deep-link post-login handoff fixed
-- Smoke-test rows more reliable with improved state management
+- Test row rendering more reliable
 
 ### Bug Fixes
 
-- Fixed app webview freezing through async agent operations and bounded render churn
-- Deduplication of repeated self-assessment and external-change triggers
-- QA approval state invalidated on QA failure to prevent stuck auto-merge
-- Orphan recovery fails safely without cross-owner leaks
-- Trigger writers guarded against re-dispatching closed/merged issues
-- Progress heartbeats bounded during inline waits
-- Operum-hold markers honored on Architect and Tester delivery
-- Model invocation floods stopped through emit-once + fingerprint gating
-- Benign agent-start races demoted from error stream
-- Task clock resets per-dispatch to prevent elapsed time ghosting
-- Stuck refresh token loops escalate to re-auth
+- Fixed app webview freezing through improved async operations
+- Eliminated repeated delivery of duplicate status updates
+- Auto-merge workflow now more robust
+- Safe handling of orphaned work items
+- Progress tracking more reliable during workflow transitions
+- Stuck refresh token loops now escalate to re-auth
 - Oversized session recovery forces fresh start
-- Exponential backoff half-open breaker recovery with log throttle
-- PM checkpoint runway restored; metric threshold corrected
-- "Restart to apply" banner suppressed for system-initiated template updates
-- Progress card reconciliation improved; live untagged cards preserved
-- --continue replay duplicates collapsed in sidebar
-- Expected NotLoggedIn errors dropped from Sentry
+- Exponential backoff recovery with improved logging
+- "Restart to apply" banner suppressed for automatic updates
+- Progress card rendering improved and more consistent
+- Reduced UI duplicates in sidebar navigation
 - Landing mobile carousel translations no longer clip
-- Report-abuse and legal-contact forms now properly async
+- Report-abuse and legal-contact forms more reliable
 - Landing FAQ stale content fixed
-- Email notifications properly awaited before sender cleanup
+- Email notifications properly awaited before cleanup
 
 ### For Developers
 
