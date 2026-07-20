@@ -2,6 +2,125 @@
 
 All notable changes to Operum Desktop are documented here.
 
+## [0.35.0] - 2026-07-20
+
+### What's New
+
+- Moved ~60 desktop commands off the UI thread for snappier, responsive interface
+- Async agent operations prevent UI freezes
+- Cross-machine issue claims tracking for team workflows
+- Collapsible Mission Control search/filter bar
+- Loading skeleton for Workflow board
+- "Queued" lane for better task visibility
+- Self-hosted runner for nightly test suite
+
+### Improvements
+
+- Git operations now handled in-process (no external dependency)
+- Double-dispatch race eliminated through delivery mechanism
+- Sequential PR gate now lane-aware (faster builds don't block on slower ones)
+- Governance PRs (documentation-only) exempted from sequential gate
+- Workflow board shows in-progress issues; CI status persists across navigation
+- Reduced desktop lock contention with async message handling
+
+### Bug Fixes
+
+- **Fixed critical app freezing** — Two confirmed GTK main-thread deadlock cycles identified and guarded against. Auto-recovery if any deadlock recurs. Overnight soak-tested with zero recurrence.
+- Eliminated duplicate message deliveries
+- Fixed self-assessment and trigger duplicate-delivery flood that caused token-cost blowups
+- Missed triggers now back-delivered to idle agents
+- Trigger watcher self-heals on initialization
+- **GitHub auth improvements**: Young access tokens no longer force full logout; GitHub server errors treated as transient; missing tokens use backoff instead of tight loops
+- Total agent restart failure fixed across all causes
+- macOS Keychain prompt storms eliminated; deep-link login fixed
+- OAuth login loop and code-verifier issues resolved
+- New user onboarding gate more robust
+- Promise rejections hardened in billing and settings
+- **External links now work properly** — Fixed to open via proper mechanisms instead of failing silently
+- **Team creation errors** now show correct timing (no more "undefined seconds")
+- **"OF WORK" stat** no longer goes stale after switching teams
+- GitHub error HTML no longer leaks into UI
+- Auto-merge pre-fetch now bounded; chronic hangs instrumented
+- Git push operations bounded to prevent hung origin from wedging system
+- Terminal-state guard extended to all dispatch types
+- QA-approval-label resurrection and PASS/FAIL race closed
+- Owner-scope enforcement tightened on CI-status triggers
+- Sonnet 5 context window correctly classified
+- Knowledge panel unified from repo checkout
+- Agent start no longer freezes UI
+- Landing page footer and LinkedIn link fixed
+
+### For Developers
+
+- CI linter forbids unbounded I/O held across Mutex guards
+- `list_integrations` now enumerates custom credential secrets
+
+## [0.34.0] - 2026-07-15
+
+### What's New
+
+- Intelligent session rotation on token budget with no work loss
+- Context metrics now compaction-aware
+- Long-lived Claude Code OAuth token support
+- Claude credential auto-rotation with health monitoring
+- CI-wait auto-recovery and non-silent stall detection
+- Backend-owned respawn for common restart triggers
+- Task-level "Validating via CI" status marker
+- Claude token moved to Settings
+- Deduplication of repeat support emails
+
+### Improvements
+
+- Dynamic todos now render in Progress card
+- Duplicate message elimination with canonical ID envelopes
+- Better message deduplication at transport level
+- Task progress scoped more accurately in Workflow board
+- Agent sidebar CI-wait better labeled as "Waiting for CI"
+- Activity feed less noisy (reduced internal status and chat spam)
+- Mission Control Activity Feed deferred to avoid blocking initial paint
+- GitHub connect modal reconciled with backend token injection
+- macOS deep-link post-login handoff fixed
+- Smoke-test rows more reliable with improved state management
+
+### Bug Fixes
+
+- Fixed app webview freezing through async agent operations and bounded render churn
+- Deduplication of repeated self-assessment and external-change triggers
+- QA approval state invalidated on QA failure to prevent stuck auto-merge
+- Orphan recovery fails safely without cross-owner leaks
+- Trigger writers guarded against re-dispatching closed/merged issues
+- Progress heartbeats bounded during inline waits
+- Operum-hold markers honored on Architect and Tester delivery
+- Model invocation floods stopped through emit-once + fingerprint gating
+- Benign agent-start races demoted from error stream
+- Task clock resets per-dispatch to prevent elapsed time ghosting
+- Stuck refresh token loops escalate to re-auth
+- Oversized session recovery forces fresh start
+- Exponential backoff half-open breaker recovery with log throttle
+- PM checkpoint runway restored; metric threshold corrected
+- "Restart to apply" banner suppressed for system-initiated template updates
+- Progress card reconciliation improved; live untagged cards preserved
+- --continue replay duplicates collapsed in sidebar
+- Expected NotLoggedIn errors dropped from Sentry
+- Landing mobile carousel translations no longer clip
+- Report-abuse and legal-contact forms now properly async
+- Landing FAQ stale content fixed
+- Email notifications properly awaited before sender cleanup
+
+### For Developers
+
+- Staging-first Supabase deploy gate implemented
+- Knowledge base index maps regenerated in git workflow
+- Golden install suite improvements
+- Decision log maintenance automated
+- Mandatory rebase-onto-latest-main before push/PR
+- Client migration safety guidance ported across templates
+- Claude session history bounded
+- Architectural decision records caught up
+- Attachment tool macOS compatibility improved
+- Abuse report confirmation email samples added
+- Test reliability improved
+
 ## [0.33.0] - 2026-07-09
 
 ### What's New
