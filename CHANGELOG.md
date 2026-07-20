@@ -2,6 +2,106 @@
 
 All notable changes to Operum Desktop are documented here.
 
+## [0.35.0] - 2026-07-20
+
+### What's New
+
+- Moved ~60 desktop commands off the UI thread for snappier, responsive interface
+- Collapsible Mission Control search/filter bar for cleaner workspace
+- Loading skeleton for Workflow board
+- "Queued" lane for better task visibility
+- Self-hosted runner for nightly test suite
+
+### Improvements
+
+- Git operations now handled in-process (no external dependency)
+- Workflow board shows in-progress issues; CI status persists across navigation
+- Reduced desktop lock contention and responsiveness issues
+
+### Bug Fixes
+
+- **Fixed critical app freezing** — Two confirmed GTK main-thread deadlock cycles identified and guarded against. Auto-recovery if any deadlock recurs. Overnight soak-tested with zero recurrence.
+- Eliminated duplicate message deliveries
+- **GitHub auth improvements**: Young access tokens no longer force full logout; GitHub server errors treated as transient; missing tokens use backoff instead of tight loops
+- Total startup and restart reliability significantly improved
+- macOS Keychain prompt storms eliminated; deep-link login fixed
+- OAuth login loop and code-verifier issues resolved
+- New user onboarding more robust
+- Promise rejections hardened in billing and settings paths
+- **External links now work properly** — Fixed to open via proper mechanisms instead of failing silently
+- **Team creation errors** now show correct timing (no more "undefined seconds")
+- **"OF WORK" stat** no longer goes stale after switching teams
+- GitHub error HTML no longer leaks into UI
+- Auto-merge performance improved with bounded pre-fetch
+- Git push operations bounded to prevent timeouts
+- Sonnet 5 context window correctly classified (fixes restart loops)
+- Knowledge panel unified from repo checkout
+- Desktop stability improved across all startup paths
+- Landing page footer and LinkedIn link fixed
+
+### For Developers
+
+- CI linter forbids unbounded I/O held across resource guards
+- `list_integrations` now enumerates custom credential secrets
+
+## [0.34.0] - 2026-07-15
+
+### What's New
+
+- Intelligent session rotation on token budget with no work loss
+- Context metrics now compaction-aware
+- Long-lived Claude Code OAuth token support
+- Claude credential auto-rotation with health monitoring
+- CI-wait auto-recovery and non-silent stall detection
+- Backend-owned respawn for common restart triggers
+- Task-level "Validating via CI" status marker
+- Claude token moved to Settings
+- Deduplication of repeat support emails
+
+### Improvements
+
+- Dynamic todos now render in Progress card
+- Duplicate message elimination improved
+- Task progress scoped more accurately in Workflow board
+- CI-wait status better labeled as "Waiting for CI"
+- Activity feed less noisy
+- Mission Control Activity Feed renders more smoothly
+- GitHub connect modal works reliably with backend authentication
+- macOS deep-link post-login handoff fixed
+- Test row rendering more reliable
+
+### Bug Fixes
+
+- Fixed app webview freezing through improved async operations
+- Eliminated repeated delivery of duplicate status updates
+- Auto-merge workflow now more robust
+- Safe handling of orphaned work items
+- Progress tracking more reliable during workflow transitions
+- Stuck refresh token loops now escalate to re-auth
+- Oversized session recovery forces fresh start
+- Exponential backoff recovery with improved logging
+- "Restart to apply" banner suppressed for automatic updates
+- Progress card rendering improved and more consistent
+- Reduced UI duplicates in sidebar navigation
+- Landing mobile carousel translations no longer clip
+- Report-abuse and legal-contact forms more reliable
+- Landing FAQ stale content fixed
+- Email notifications properly awaited before cleanup
+
+### For Developers
+
+- Staging-first Supabase deploy gate implemented
+- Knowledge base index maps regenerated in git workflow
+- Golden install suite improvements
+- Decision log maintenance automated
+- Mandatory rebase-onto-latest-main before push/PR
+- Client migration safety guidance ported across templates
+- Claude session history bounded
+- Architectural decision records caught up
+- Attachment tool macOS compatibility improved
+- Abuse report confirmation email samples added
+- Test reliability improved
+
 ## [0.33.0] - 2026-07-09
 
 ### What's New
