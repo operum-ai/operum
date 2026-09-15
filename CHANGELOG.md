@@ -4,6 +4,165 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.50.0] - 2026-09-12
+
+### Improvements
+
+- **Credentials are now redacted in live agent output and the activity feed**, not only in the stored journal. A token could previously appear in the place you are most likely to look while being masked in the place designed to be audited.
+- **A group-facing agent can no longer act on instructions from a public chat.** The session is now created without any mutating tools, so an injected "merge this" fails because no merge tool exists.
+- **Release notes are escaped before rendering.** Settings → About and the release-notes modal both fetch the changelog over the network and now share one escape-first renderer.
+- A credential that cannot be checked is no longer treated as working.
+- Per-poll GitHub request accounting, so the cost of the polling loop is measurable rather than estimated.
+- Build-cache write failures are now surfaced instead of silently degrading into slower builds.
+
+### Bug Fixes
+
+- **The workflow board could stop rendering entirely.** If the same issue arrived twice, the whole board went down rather than the one card. Duplicate entries now collapse to a single card.
+- **A screenshot could disappear between attaching it and sending.** The draft folder could be deleted while the message was still reading from it. Cleanup now waits until every attachment has been read.
+- **Error reports were attributed to nobody on most sessions.** Your account was recorded only when you signed in interactively, so an ordinary launch of an already-signed-in install reported errors anonymously. It is now restored at startup and cleared properly on sign-out.
+- **A repository whose CI is shaped differently from Operum's own could not merge at all.** The coverage gate required one exact job layout; it now falls back permissively and records what it could not establish.
+- Agents were being sent to fix build failures that had never run. A job killed before it started now goes back for a re-run instead of to an engineer as a code fix.
+- A paused issue no longer produces "this agent is idle" alerts.
+- The retired Unlimited tier displayed inconsistently across screens; every screen now reads one source.
+- Lifecycle emails were not being sent on schedule.
+- The workflow board no longer writes a diagnostic file every time it recalculates what to display.
+
+## [0.49.0] - 2026-09-11
+
+### What's New
+
+- **Press `Ctrl+Shift+F12` to collapse every side panel**, and press it again to get your exact arrangement back — not a tidied default.
+- **You now choose Full or Observer access when you pair a phone**, and can restrict a device's level afterwards without re-pairing. Raising it back to Full requires pairing again.
+- **Mobile: a consent gate on signup and first sign-in**, so terms acceptance is recorded rather than assumed.
+- **Merge-coverage enforcement is now a per-team setting**, defaulting to advisory, so a repository whose CI is shaped differently is no longer frozen out of merging.
+
+### Improvements
+
+- **A pull request could previously skip QA approval entirely by declaring it closed no issue.** That short-circuit is gone.
+- **Phone tokens now last 30 days instead of 90.** Existing phones must be paired again — old tokens are rejected by design.
+- **A credential could be read by any local user.** One alert path put a bot token in a subprocess command line, where it is readable for as long as the process runs. It now uses the same in-process transport as everything else.
+- **A paid template could be self-granted** — a signed-in client could record a purchase nothing had charged for. That permission is revoked.
+- **A custom integration could be named the same as a built-in credential and silently overwrite it**, including your team's GitHub access. Reserved names are now refused.
+- A stored secret that could not be decoded is no longer treated as plain text.
+
+### Bug Fixes
+
+- **Mission Control on mobile did not work at all** — the screen errored and the chat was never mounted, on both iOS and Android.
+- **A normal cold start was rendered as a catastrophe**, showing error copy and stopping agents for the couple of seconds before anything had loaded.
+- The status-bar issue and pull-request counters could sit blank for a long time, looking identical to a team with no repository connected.
+- An agent's Creativity setting reverted to the default on the next sync while its model and style persisted.
+- **Windows helper binaries were not signed.** They are now signed before the installer is bundled, so the whole package is covered rather than just its outer layer.
+- A malformed issue search reported zero results rather than an error.
+- Documentation described the Windows SmartScreen warning as one-time and the app as unsigned. Both were wrong.
+- A restarted app forgot which alerts it had already dismissed, so the same ones returned.
+- Several alerts fired against work that was deliberately paused, reporting it as stalled.
+- A message to the project manager could be delivered twice or lost.
+
+## [0.48.0] - 2026-09-08
+
+### Improvements
+
+- **Secrets could be written to the runtime log.** PostHog keys with the `phs_`, `pha_` and `phr_` prefixes were not covered by log redaction. The patterns are now shared in one place rather than duplicated.
+- Five dependency advisories resolved by upgrading. A sixth has no fixed version at any release, is development-only, and is not part of the signed application; it is recorded with a written rationale rather than silently ignored.
+- Icon extraction no longer writes to a fixed, predictable temporary path.
+- **The app now uses conditional requests on its heaviest GitHub read paths**, so a poll that finds nothing changed costs nothing against your rate limit. Repeated limit exhaustion had been taking the whole fleet read-only.
+- **Agents no longer file a new issue for every observation.** Filing is now the exception rather than the default — a large reduction in automatically created tracking items.
+- **The Claude session reconnect control has been removed.** It did not do what its label implied.
+
+### Bug Fixes
+
+- **A repeated `403` was answered by retrying at the same rate**, which is what sustains the limit that caused it. The check now backs off, and "your credential is bad" is no longer reported identically to "GitHub answered, but refused".
+- **The owner-scope banner cleared as soon as the main app recovered**, while agents started during the outage were still read-only. It now distinguishes recovered from recovering and names which agents are still catching up.
+- Agents could stay read-only indefinitely after an outage cleared.
+- **One log line was roughly 90% of the entire runtime log**, at about a thousand records a minute, which made the log unusable as evidence. Only that line was quieted.
+- A paginated fetch had no upper bound and could return a short list indistinguishable from a complete one. It now stops loudly rather than truncating quietly.
+- An activity feed that could not be read presented as an empty one.
+- A running internal schedule showed the empty state as though nothing were scheduled.
+- A refused restore showed a generic message instead of the reason the server gave.
+- Declining the Tailscale setup guide on mobile left you with no way forward.
+- A failed repository clone gave up before the cause had been classified, so a fixable problem was reported as a generic failure.
+- **A pull request could be treated as passing when a required check had not reported at all**, which is different from having reported a failure.
+- An idle agent could block its own next assignment, and a stopped agent could be shown as busy.
+- A time-limited grant could be issued to a paying customer, overriding the plan they were already paying for.
+
+## [0.47.0] - 2026-09-04
+
+### Improvements
+
+- Board search now matches labels, not just issue number and title.
+- A permanent auto-merge refusal is now surfaced to you rather than retried silently.
+- Anthropic keys containing hyphens are now correctly scrubbed from logs.
+- Settings offers to save when only the commit identity has changed.
+
+### Bug Fixes
+
+- The full rendered template panel no longer fails when local agent files are absent.
+- The plan badge shows **Unlimited** rather than **Team** for a paying customer.
+- The staleness banner is themed rather than hardcoded to dark-theme colours.
+- Documentation no longer claims a mobile-app capability that does not exist.
+- Architecture diagrams now all render instead of some being dropped.
+
+## [0.46.0] - 2026-08-28
+
+> **Known issue — macOS sign-in is NOT fixed in this release.** If you hit *"Can't sign in: no secure credential store on this machine"* on macOS, this release does not resolve it. What ships here is better diagnosis, not a fix: the keychain check previously collapsed five different conditions into one unhelpful "no keychain exists" message, and now reports which actually occurred. The workarounds in the sign-in screen still apply — unlock or start your keyring and re-check, generate a local key, or set `OPERUM_MASTER_KEY`.
+
+### Bug Fixes
+
+- **State from a previous team could survive a team switch**, which could suppress an alert, delay a dispatch, or excuse a stuck agent on behalf of a team you had switched away from. Clearing is now structural rather than a hand-maintained list.
+- **A CI check that never ran reported the same as one that ran and passed**, so a lane that silently failed to execute looked green.
+- An agent already working could be dispatched to the same work again.
+- A withdrawn upstream dependency failed the security audit on every branch, including `main`, with nothing in the repository having changed.
+- CI could not be pointed at a different runner pool when the default one was degraded, so an infrastructure outage had no manual escape.
+- Agent instruction templates now promote correctly through their review path.
+
+## [0.45.0] - 2026-08-26
+
+### Bug Fixes
+
+- **Green CI but the merge is refused.** A pull request with every required check passing could be blocked with *"Merge coverage could not be determined"*. The gate gave up before reading the required checks your repository declares. It now reads them — through classic branch protection **or** a ruleset — and accepts a check your merge policy requires, green at that commit, whatever shape your CI takes. One aggregator job counts the same as twenty separate ones.
+- **QA approved the work, but the approval label never appeared.** The approval was written under a placeholder team while the reader looked for the real one, so the record existed and was invisible.
+- **A pull request that could never be approved, however many times QA passed.** A retry is now idempotent.
+- **A rate limiter that stopped enforcing during an outage.** When the shared limiter could not read your limit it allowed the request. Anything that authorizes, mutates or issues a credential now denies instead.
+- **"Check your internet connection" when the cause was never determined.** An undetermined cause now says so rather than naming a wrong one.
+- A failed credential refresh no longer stops the background task that performs it.
+- Attachments are now confirmed as delivered — and when one does not reach the agent you are told explicitly, rather than the agent proceeding as though the file were absent.
+- **Deleting a team now warns you before the deletion becomes permanent.**
+- **Signing in on a machine whose credential store has changed** now offers to recover what it can still read, instead of proposing to wipe everything.
+- Long comment threads are read to the end; previously only the first page was fetched, so an agent could act on a stale picture of the discussion.
+- A GitHub server error is now reported as a server error rather than as a response-parsing failure.
+- An unexpected error is recorded once rather than repeatedly.
+- A scheduled sweep no longer re-proposes decisions you have already made.
+- The prompt inspector no longer presents its preview as the exact text an agent received — it could differ.
+- Filing feedback now tells you at the time if the issue cannot be triaged automatically.
+
+### Improvements
+
+- **An unassigned issue can no longer vouch for a merge.**
+- **The Archives view has been removed**, along with a banner that pointed at it and no longer did anything.
+- Interface wording is no longer rewritten through a substitution layer; the text you see is the text as written.
+- Telegram notifications now carry sending limits and a kill switch, so a misbehaving loop cannot flood a channel.
+
+## [0.44.0] - 2026-08-22
+
+### What's New
+
+- **Auto-merge is now available on the Standard $49 tier**, not only on higher tiers.
+- **The trial is 14 days of full Premium**, described as such rather than as a bounded allowance.
+- **Homepage restructured**, leading with the trial offer.
+
+### Improvements
+
+- Privacy policy and terms rewritten for accuracy — what is collected, where it is stored, and what leaves your machine.
+- Account Settings call-to-action buttons updated.
+
+### Bug Fixes
+
+- **The Quick Start guided tour waits for you at each step** instead of advancing on a timer. On a freshly provisioned team several steps are already satisfied, and the tour previously walked itself to the end without asking for anything.
+- An agent response could be dropped silently when its first line looked like bookkeeping, so completed work went unnoticed with no error anywhere.
+- A refused pull request now names every way to satisfy the linked-issue requirement, including the opt-out for genuinely issue-less work.
+- **An agent no longer refuses to start because a different agent has work in progress** — the busier the team, the likelier any given agent stalled on launch.
+- **Merging no longer updates a pull request's branch unless your repository actually requires an up-to-date branch.** That update invalidated fresh QA approvals and restarted the entire CI run, once per merge for every other open pull request.
+
 ## [0.43.0] - 2026-08-21
 
 ### What's New
