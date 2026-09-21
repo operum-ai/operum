@@ -4,28 +4,54 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [0.50.0] - 2026-09-12
+## [0.50.0] - 2026-09-21
+
+### What's New
+
+- Windows builds are working again.
+- **A card's status now shows a real priority instead of a "hold ?" badge that appeared on every card and explained nothing.** Held work is now visible directly on the board.
+- The sidebar is reorganized into Run / Configure / System, and it's now resizable.
+- The Project page is gone — Working Directory now lives in Settings.
+- Plans are now Free / Standard / Premium — the fourth tier has been retired.
 
 ### Improvements
 
 - **Credentials are now redacted in live agent output and the activity feed**, not only in the stored journal. A token could previously appear in the place you are most likely to look while being masked in the place designed to be audited.
-- **A group-facing agent can no longer act on instructions from a public chat.** The session is now created without any mutating tools, so an injected "merge this" fails because no merge tool exists.
-- **Release notes are escaped before rendering.** Settings → About and the release-notes modal both fetch the changelog over the network and now share one escape-first renderer.
+- **A group-facing agent does not act on privileged instructions from a public chat.** A message asking for a merge, a hold, or a dispatch is surfaced to you in the desktop rather than performed.
+- Release notes are escaped before rendering, and the in-app changelog is now a link instead of a pasted copy.
 - A credential that cannot be checked is no longer treated as working.
 - Per-poll GitHub request accounting, so the cost of the polling loop is measurable rather than estimated.
 - Build-cache write failures are now surfaced instead of silently degrading into slower builds.
+- Cloning a repository is more resilient: a missing repository says so instead of blaming the network, a stalled clone can actually be retried, and a partially-damaged local checkout is detected and repaired.
+- Comments an agent posts are now reliably attributed to the agent that posted them.
+- Connecting GitHub is more resilient: temporary failures recover automatically instead of asking you to reconnect, and the separate connection paths no longer share state in a way that could confuse one for another.
+- Custom credential setup now offers AWS as a supported pairing, and refuses a raw secret value entered where a name is expected.
+- Integrations: edit a custom credential from its own card, with "Add Custom Integration" always visible.
+- **A pull request could previously skip QA approval entirely by declaring it closed no issue.** That short-circuit is gone.
 
 ### Bug Fixes
 
-- **The workflow board could stop rendering entirely.** If the same issue arrived twice, the whole board went down rather than the one card. Duplicate entries now collapse to a single card.
-- **A screenshot could disappear between attaching it and sending.** The draft folder could be deleted while the message was still reading from it. Cleanup now waits until every attachment has been read.
+- **The workflow board could stop rendering entirely.** If the same issue arrived twice, the whole board went down rather than the one card. Duplicate entries now collapse to a single card, and a populated column no longer renders as empty depending on window size.
+- **A screenshot could disappear between attaching it and sending.** The draft folder could be deleted while the message was still reading from it. Cleanup now waits until every attachment has been read; an attachment that fails to reach the agent is now reported explicitly instead of the agent proceeding as though the file were absent.
 - **Error reports were attributed to nobody on most sessions.** Your account was recorded only when you signed in interactively, so an ordinary launch of an already-signed-in install reported errors anonymously. It is now restored at startup and cleared properly on sign-out.
-- **A repository whose CI is shaped differently from Operum's own could not merge at all.** The coverage gate required one exact job layout; it now falls back permissively and records what it could not establish.
-- Agents were being sent to fix build failures that had never run. A job killed before it started now goes back for a re-run instead of to an engineer as a code fix.
-- A paused issue no longer produces "this agent is idle" alerts.
+- **A repository whose CI is shaped differently from Operum's own could not merge at all.** The coverage check required one exact job layout; it now falls back permissively and tells you what it couldn't confirm.
+- An agent waiting on a slow CI run is now shown as waiting, rather than as actively working with a running timer.
+- Agents were being sent to fix build failures that had never run. A job killed before it started now goes back for a re-run instead of being treated as a code fix.
+- A paused issue no longer produces "this agent is idle" alerts, and an agent working through a slow CI run is no longer reported as stuck or handed new work while it waits.
 - The retired Unlimited tier displayed inconsistently across screens; every screen now reads one source.
 - Lifecycle emails were not being sent on schedule.
 - The workflow board no longer writes a diagnostic file every time it recalculates what to display.
+- The model picker's default selection is now legible instead of shown twice.
+- Knowledge panels that couldn't load now say which of several reasons applies, instead of just appearing blank.
+- A dropped model selection could leave an agent with no visible window and stuck on the same model; it's now recovered automatically.
+- GitHub links shown in the app could render broken; they now render as intended.
+- Scheduled tasks are now created idempotently, so retrying a schedule doesn't create duplicates, and a scheduled run that hasn't started yet is no longer misreported as timed out.
+- PDF and other non-image attachments are now delivered directly to agents that can read files, instead of failing silently.
+
+### For Developers
+
+- Every agent commit now carries a DCO sign-off derived from the agent's own identity — no separate configuration needed.
+- Agents can now request a re-run of a cancelled GitHub Actions run when the cancellation reason allows it.
 
 ## [0.49.0] - 2026-09-11
 
