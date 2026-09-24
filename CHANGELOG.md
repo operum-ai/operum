@@ -4,6 +4,27 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.50.1] - 2026-09-24
+
+### What's New
+
+- You can now react to an agent's messages with emoji — the agent sees the reaction you sent.
+
+### Improvements
+
+- Disk Usage now shows one consistent list of build caches, and the rows sum to the total.
+- The Multi-Fleet setting is hidden for now, ahead of launch.
+- Operum now reuses its connections to GitHub instead of opening a new one for every request, so GitHub traffic is lighter and faster.
+
+### Bug Fixes
+
+- **Agents could not edit any file in their own project on newer versions of Claude Code.** Each agent is now granted exactly its own project folder.
+- Signing in to Claude with "Connect" now captures your session token automatically, instead of asking you to copy and paste it in by hand.
+- Windows: the installer now stops this install's background helpers before updating, and detects a mismatched helper.
+- A plan change could silently lower your saved settings if it read a stale copy of your entitlements. That's fixed.
+- Idle agents could still be restarted about every 10 minutes because of an unacknowledged notice. They now stay idle until there's real work.
+- Emoji reactions and the Reply button no longer overlap message text — they now sit in their own row below each message.
+
 ## [0.50.0] - 2026-09-24
 
 ### What's New
