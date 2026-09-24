@@ -4,7 +4,7 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [0.50.0] - 2026-09-21
+## [0.50.0] - 2026-09-24
 
 ### What's New
 
