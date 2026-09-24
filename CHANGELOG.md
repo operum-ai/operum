@@ -13,9 +13,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - The sidebar is reorganized into Run / Configure / System, and it's now resizable.
 - The Project page is gone — Working Directory now lives in Settings.
 - Plans are now Free / Standard / Premium — the fourth tier has been retired.
+- Each team can now sign in to Claude with its own Anthropic login, alongside the setup token.
+- A welcome screen replaces the Create Team pop-up that used to open on first launch.
+- Board columns can be sorted by Updated or Priority.
+- The agent chat panel is resizable, and the navigation snaps to set widths.
+- An agent waiting on CI now has its own animated "waiting" state, and a message you send in Mission Control shows which agent it went to.
+- The window is now titled "Operum - AI Agent Team", with "Your AI Team" under the logo.
 
 ### Improvements
 
+- **Moving a Quick Start repository to your own GitHub account is no longer offered.** To take your code with you, use the zip export.
+- **Claude can no longer be connected by reusing your Claude subscription login.** Use a setup token or your own API key.
+- The plan screens in the app now match operum.ai/pricing, and a trial shows as PREMIUM, which is what a trial includes.
+- Manual Claude setup now shows the exact `claude setup-token` command to run.
+- The agent progress indicator now works for agents running on the Claude CLI.
 - **Credentials are now redacted in live agent output and the activity feed**, not only in the stored journal. A token could previously appear in the place you are most likely to look while being masked in the place designed to be audited.
 - **A group-facing agent does not act on privileged instructions from a public chat.** A message asking for a merge, a hold, or a dispatch is surfaced to you in the desktop rather than performed.
 - Release notes are escaped before rendering, and the in-app changelog is now a link instead of a pasted copy.
@@ -31,6 +42,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Bug Fixes
 
+- **Quick Start teams could freeze after startup.** Agents on a managed repository refused all work for a period, and the warning pointed to a GitHub setting that managed teams do not have. Both are fixed.
+- **A Claude token that Anthropic had rejected could be saved as working.** The team then would not start, even though setup reported success.
+- Idle agents were repeatedly flagged as stuck and restarted.
+- Notifications and session summaries sent to agents could get stuck and be re-sent every 30 seconds and on every restart.
+- An agent waiting on CI could be reported as stalled, or shown as stopped in the status bar.
+- The GitHub counters in the status bar could stay blank on pages other than Mission Control.
+- Internal status blocks could appear in the chat panel.
+- Status dots and indicators were hard to read in the light theme.
+- A resize handle appeared on the left navigation where it should not, and the chat panel replayed its slide-in animation.
+- Archived Teams appeared outside the Team tab in Settings.
 - **The workflow board could stop rendering entirely.** If the same issue arrived twice, the whole board went down rather than the one card. Duplicate entries now collapse to a single card, and a populated column no longer renders as empty depending on window size.
 - **A screenshot could disappear between attaching it and sending.** The draft folder could be deleted while the message was still reading from it. Cleanup now waits until every attachment has been read; an attachment that fails to reach the agent is now reported explicitly instead of the agent proceeding as though the file were absent.
 - **Error reports were attributed to nobody on most sessions.** Your account was recorded only when you signed in interactively, so an ordinary launch of an already-signed-in install reported errors anonymously. It is now restored at startup and cleared properly on sign-out.
