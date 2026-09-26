@@ -4,6 +4,27 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.51.0] - 2026-09-26
+
+### What's New
+
+- New users now see a short guided tour the first time they open the app.
+- Launching the app or creating a new team now shows live, step-by-step progress instead of a blank "Initializing" wait.
+- Chat messages have a cleaner layout: hover over a message to reveal its actions, and reactions now appear as small markers underneath.
+- Outgrowing Quick Start now comes with a built-in guide for moving to your own repository and CI, and every project export includes a handover file to help with the move.
+
+### Improvements
+
+- Agent health checks do less work on every tick.
+
+### Bug Fixes
+
+- **The agent progress list could disappear partway through a task.** It now stays visible for the whole run.
+- Connecting a private bring-your-own-repo project now asks for your access token before cloning starts, instead of failing partway through.
+- On macOS, a minimised or hidden Operum window could reload itself repeatedly and show an "Operum is not responding" notification even though nothing was wrong. A hidden window is no longer treated as frozen.
+- Internal status messages could occasionally appear in the chat panel. They're now filtered out.
+- When a CI run failed, your Engineer could be alerted about it more than once, sometimes before the run had finished. It now gets a single alert per push, after the run settles.
+
 ## [0.50.1] - 2026-09-24
 
 ### What's New
