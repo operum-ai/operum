@@ -4,6 +4,48 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.52.0] - 2026-09-27
+
+### What's New
+
+- New users now see a reworked first-run tour: consistent "Skip tour" / "Next" buttons throughout, a "Meet Your Team" step that spotlights the Agents page, and tooltips that no longer clip off the top of the screen.
+- Quick Start projects that want to move to their own GitHub account can now request a manual transfer, handled by Operum support.
+- The Agents page now includes a Communication Flow diagram showing how you and each agent interact, along with each agent's real connected integrations.
+- Team Settings now includes a merge-coverage policy control — choose Advisory (default) or Blocking.
+- The team token card now shows when your Claude credential was last verified, or if verification failed, instead of only when it was connected.
+
+### Improvements
+
+- The status bar now shows when the background agent scheduler has stalled (e.g. "Arbiter stalled since 14:32"), so a stuck fleet is visible immediately instead of looking idle.
+- The chat message hover toolbar is now a single compact control shared across Mission Control, the session panel, and the docked chat.
+- Routine agent status updates (INFO-level) are now hidden from the chat panel by default, cutting down on notification noise.
+- Integration cards now use vendored brand icons with cleaner styling, and editing a custom key stays on its own card instead of navigating away.
+- Mobile now connects over Tailscale only — the relay and local-network discovery fallback paths have been removed for simpler, more reliable connectivity.
+- Managed-team setup now draws from a shared reserved pool for more consistent provisioning.
+- Light theme status colors (success, error, and non-text indicators) are now lighter and easier to read.
+- Removed the unused Parameters button from the Agents page.
+- Clarified the guidance shown when a pull request's checks haven't started yet.
+
+### Bug Fixes
+
+- **The first clone of a new Quick Start project could fail with a "conflicts prevent checkout" error.** It now waits for the clone to finish before anything else touches the repository.
+- Background sync and knowledge-base auto-commit no longer run against a repository that's still being cloned.
+- The Back button on a failed-clone screen now returns you to your previous team instead of opening the create-team wizard.
+- **Switching, creating, or restarting a team could leave agents unable to act because the wrong account was resolved for that team.** Team activation now resolves the correct owner every time.
+- Switching to a private team with no saved access token now proceeds correctly instead of getting stuck.
+- Scheduled runs no longer undo edits (task, frequency, enabled state) made to a schedule between syncs.
+- **Merge-coverage checks could incorrectly block a merge** on a repository with a non-standard CI setup or when coverage data couldn't be read. Both now fail open to a permissive check instead of blocking forever.
+- An issue assigned to a teammate could still be routed to the wrong team; ownership now always follows the assignee, falling back to the creator only when nobody is assigned.
+- Fixed the affiliate program: invite links now use the correct parameter, invitations can be created and claimed, and admin affiliate pages load correctly again.
+- Status updates could show contradictory auto-merge state ("ON" and "OFF") in the same message — you'll now always see the current, correct state.
+- A stopped Tailscale connection on mobile now shows "not running" instead of a confusing raw network error.
+- GitHub authentication status no longer flaps between "degraded" and "recovered" simply because the app window was minimized.
+- Fixed a case where the pipeline could incorrectly flag in-progress work as missing and attempt to redispatch it.
+- Copy actions across the app now reliably report failure ("Couldn't copy") instead of silently doing nothing.
+- Chat message reactions now render as crisp icons, and the "queued" chip is easier to read.
+- The "issue scoping is degraded" banner now appears only when a working team genuinely loses GitHub access — never during team creation or a switch warm-up.
+- The Switch Team confirmation dialog no longer stays stacked over the loading screen when a switch starts.
+
 ## [0.51.0] - 2026-09-26
 
 ### What's New
