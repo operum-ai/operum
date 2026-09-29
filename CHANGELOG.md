@@ -4,6 +4,31 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.53.0] - 2026-09-29
+
+### What's New
+
+- The first-run tour now starts with a "Connect Claude Code" step, and the Start step no longer says there's "nothing to configure".
+
+### Improvements
+
+- Claude sign-in is now the primary way to connect: pick "Sign in with your Claude account" first, or "Use an API key instead" as a secondary option. The old setup-token connect flow has been removed.
+- **Removed the Operum-paid trial Claude key.** Operum is now fully bring-your-own-Claude — starting agents always uses your own Claude sign-in or API key, with no Operum-provided trial credits.
+- Team setup now shows one combined panel for GitHub and Claude sign-in before Start, instead of separate prompts.
+- Claude Code now installs via the native one-click installer only; the npm install instructions have been removed.
+- The Integrations page now shows a single page header — the redundant "Service Integrations" sub-header is gone.
+
+### Bug Fixes
+
+- **Switching teams no longer starts agents against the previous team's folders, and no longer leaves a stale "still re-provisioning" banner behind.**
+- Start All now stays disabled for the whole auto-start waiting window, so it can no longer race an automatic start.
+- Starting a team with no Claude account signed in now shows one clear "Sign in to Claude to start this team" prompt instead of an error per agent.
+- Fixed in-app Claude sign-in getting stuck and timing out without ever showing a sign-in link.
+- Fixed the Claude Code install command failing on Debian/Ubuntu-based systems.
+- Links in Mission Control chat now include the whole URL instead of cutting off after the first dot.
+- Pasting an image into a sidebar chat panel no longer also lands a duplicate copy in Mission Control's composer.
+- Fixed a stale hover-toolbar visual glitch on Linux (WebKitGTK) where a toolbar could stay visible after the pointer moved away.
+
 ## [0.52.0] - 2026-09-27
 
 ### What's New
