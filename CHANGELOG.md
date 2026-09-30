@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### What's New
 
 - The first-run tour now starts with a "Connect Claude Code" step, and the Start step no longer says there's "nothing to configure".
+- Linux: a new AppImage download that updates itself automatically, with signed updates.
+- Settings now shows your Operum account (email and user ID, with a copy button) and the connected Claude account, to make support look-ups easier.
 
 ### Improvements
 
@@ -17,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Team setup now shows one combined panel for GitHub and Claude sign-in before Start, instead of separate prompts.
 - Claude Code now installs via the native one-click installer only; the npm install instructions have been removed.
 - The Integrations page now shows a single page header — the redundant "Service Integrations" sub-header is gone.
+- Agents no longer load the claude.ai connectors (Gmail, Drive, Calendar, …) from your personal Claude account. Only the team's own MCP servers are used.
 
 ### Bug Fixes
 
@@ -28,6 +31,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Links in Mission Control chat now include the whole URL instead of cutting off after the first dot.
 - Pasting an image into a sidebar chat panel no longer also lands a duplicate copy in Mission Control's composer.
 - Fixed a stale hover-toolbar visual glitch on Linux (WebKitGTK) where a toolbar could stay visible after the pointer moved away.
+- The first-run tour now moves on to Start All after Claude sign-in, instead of ending on a "Finish" screen.
+- A new Quick Start team's agents can act on GitHub straight away, without restarting the app.
+- Agents no longer load outdated project knowledge when the team's knowledge files changed just before they started.
 
 ## [0.52.0] - 2026-09-27
 
