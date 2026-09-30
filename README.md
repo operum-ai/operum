@@ -22,8 +22,7 @@ Get the latest Operum desktop app:
 
 [View all releases &rarr;](https://github.com/operum-ai/operum/releases)
 
-> **Requires** an active Claude Code (Max) subscription to run agents.
-
+> **Requires** your own Claude plan to run agents — Max for individuals, or Team or Enterprise for companies. An Anthropic API key also works, but it's billed per use and can cost far more than a subscription for a full agent team.
 ## How It Works
 
 ```mermaid
