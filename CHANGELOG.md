@@ -4,6 +4,33 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.54.0] - 2026-10-01
+
+### What's New
+
+- Team setup now checks the two things every team needs before it starts — a signed-in Claude account and GitHub access — in one place, and prepares the workspace silently in the background with no separate clone dialog.
+- The status bar's Free Trial chip now shows how many trial days you have left.
+- Workflow issue cards show the green in-progress bar again while an agent works on them.
+- Accepting the Terms is now remembered on each device; you are only asked again when the Terms change.
+
+### Improvements
+
+- On a slow or unstable connection the Workflow board keeps showing your last cards and refreshes when the data arrives, instead of a loading skeleton and a timeout error. The "githubstatus.com" link on its error screen now opens in your browser.
+- Linux: the AppImage menu launcher now shows the Operum icon and pairs with the running window, and the download page explains how to make the AppImage executable on first launch.
+- Referral discounts are now applied automatically at checkout, and the affiliate page shows the referral perk.
+- Unsubscribe links and one-click unsubscribe headers have been added to our emails.
+
+### Bug Fixes
+
+- **Fixed in-app Claude sign-in on Windows (it hung before showing a sign-in link) and on macOS ("couldn't start the sign-in" when Claude was installed outside the app's search path).**
+- **Agents you stopped are no longer started again automatically after your computer wakes from sleep.**
+- Windows: billing and checkout links now open correctly in your browser.
+- The "of work" total no longer restarts from zero after switching teams; it resumes your stored total.
+- Fixed a managed-repository sign-in error that retried every 10 minutes indefinitely and could show a false re-authenticate prompt on other teams.
+- Sign-in now repairs a broken keychain entry on every sign-in path instead of treating it as missing.
+- Fixed a team-creation dialog that could get stuck after a background retry.
+- Tightened database permissions on several functions that handle personal data.
+
 ## [0.53.0] - 2026-09-29
 
 ### What's New
