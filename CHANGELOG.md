@@ -4,6 +4,35 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.55.0] - 2026-10-03
+
+### What's New
+
+- Pasted images now show as thumbnails, both while you write a message and after you send it.
+- Pipeline Concurrency is now a single team-wide setting, kept in sync across your devices.
+- A new Team setting lets you declare a build cache for your agents.
+- Knowledge: both tabs now use the same "Edit with PM" flow.
+- One support assistant now answers on the website, in the app and on Discord.
+
+### Improvements
+
+- Start All is faster: agents start without fixed waits, and the app waits only until they actually report in.
+- The PM chat panel now shows formatting properly: code blocks with a Copy button, inline code and bold text, instead of raw markdown symbols.
+- An agent that reaches its Claude usage limit is now paused until the limit resets, instead of being restarted into the same limit over and over.
+- After an app restart, only PM greets you; other agents no longer post greetings or idle reports to you.
+- The Workflow board's "saved board" banner now appears only when a refresh is slow or GitHub can't be reached.
+- Settings: Git identity and account rows match the rest of the layout, and the Claude account moved to the Team section.
+
+### Bug Fixes
+
+- **Claude "Sign out" now really signs you out of Claude, and confirms it before the app forgets the account.**
+- **"Sign out everywhere" now ends every session on every device.**
+- Windows: no more stray console windows flashing open.
+- Linux: Copy now shows success only when the text actually reached the clipboard; otherwise it says "Couldn't copy".
+- A Quick Start team that couldn't be created because of a quota limit no longer leaves an empty team behind.
+- Signed-in pages on operum.ai are never stored in a shared cache.
+- Tightened security checks in several backend functions.
+
 ## [0.54.0] - 2026-10-01
 
 ### What's New
