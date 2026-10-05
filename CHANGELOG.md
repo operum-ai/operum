@@ -4,6 +4,35 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.56.0] - 2026-10-05
+
+### What's New
+
+- Build cache: a new **Detect** button asks the Architect to work out the right cache settings for your project. Re-detecting shows what would change before you apply it.
+
+### Improvements
+
+- Settings: Build cache is now an aligned table below Disk Usage, the Git identity card sits directly above About, and the Claude account now appears inside the Claude Code setup step, which also lists what Workspace readiness covers.
+- The agent instructions tab now explains that those files are protected, in place of an edit button that couldn't save.
+- Mission Control opens on your newest 50 messages.
+- PM no longer receives repeated or echoed notifications about the same event.
+- A PR that is already merged or closed no longer shows an "Auto-merge failed" error.
+- Integrations (X/Twitter, YouTube, Instagram, Reddit, Vercel) now retry temporary network errors automatically.
+
+### Bug Fixes
+
+- **Linux: on NVIDIA graphics, the window no longer freezes or paints only partly after the screen dims and you unlock.**
+- **An expired or briefly unreachable sign-in no longer logs you out. If a sign-out did stop your agents, signing back in with the same account restarts them.**
+- **An app update or quit no longer loses the task an agent had just accepted.**
+- Turbo and Auto-merge now turn on as soon as the app finishes loading, without having to click into the window.
+- After sleep, a navigation click that did nothing now recovers.
+- Claude "OAuth session expired" now opens the sign-in screen once, instead of repeatedly.
+- Chat: image-only messages keep their thumbnail, and in the docked panel a sent image appears under its text.
+- Workflow: a duplicated device ID no longer freezes a board column, and the refresh banners read correctly again.
+- Knowledge-base sync now works for repositories whose default branch isn't `main`.
+- Updated dependencies to clear known security advisories in the desktop app.
+- operum.ai: fixed an error on the affiliate page.
+
 ## [0.55.0] - 2026-10-03
 
 ### What's New
