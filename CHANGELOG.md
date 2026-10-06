@@ -4,6 +4,26 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.57.0] - 2026-10-07
+
+### What's New
+
+- macOS: Cmd+1 through Cmd+8 and Cmd+0 switch between pages, matching Alt+digit on Windows and Linux.
+
+### Improvements
+
+- The status bar shows "Trial · N days left" during your trial and "Free" after it ends.
+- Settings → Setup: the three setup steps now share one status indicator, so every "Ready" looks the same.
+- Disk Usage now tells "declared, nothing built yet" apart from "no build cache declared".
+- Light theme: warnings use a clear orange, and that colour is no longer used for decoration.
+
+### Bug Fixes
+
+- **Signing out from another device now stops all of this device's agents, exactly like Sign out in the app.**
+- **macOS: if the app is installed somewhere it can't update itself, you're told before the update starts. Every failed update install now gives you a next step.**
+- Linux AppImage: the app no longer forces X11, so it runs natively on Wayland.
+- The product tour now starts at the right step once your repository finishes cloning.
+
 ## [0.56.1] - 2026-10-06
 
 ### Improvements
