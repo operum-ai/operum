@@ -4,6 +4,21 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.56.1] - 2026-10-06
+
+### Improvements
+
+- Create Team → Connect Repo now has a GitHub access step: paste a token, or reuse the one from another of your teams (shown by team name and GitHub login, never the token itself), then pick from your full repository list.
+- Settings → Setup: the GitHub step now shows which GitHub account the team uses, how it's connected, and the token's scopes, and flags a token that's missing `repo` or `workflow`.
+- Settings: the Git identity card is gone. Operum no longer changes your global git configuration; agent commit identity is set in Agent Settings.
+
+### Bug Fixes
+
+- **Connect Repo no longer fails to create the team. The GitHub token is now collected right after the team is created.**
+- **Linux AppImage: fixed a blank window on Arch, Fedora and other distributions with a recent Mesa.**
+- Linux AppImage: agents and Claude sign-in now run with your normal environment, so tools such as Python work as expected in agent sessions.
+- Updated dependencies to clear new security advisories.
+
 ## [0.56.0] - 2026-10-05
 
 ### What's New
