@@ -4,6 +4,34 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.58.0] - 2026-10-12
+
+### What's New
+
+- Chat: attach video and audio files through the paperclip. The agent receives the file's location rather than the file itself, so large recordings work.
+- Chat: quoted text in agent replies shows as a quote with a Copy button.
+
+### Improvements
+
+- Settings → Billing: "Get Standard" and "Get Premium" open the pricing page, where you can now subscribe.
+- Agent Settings: a save tells you it worked, and tells you when an agent restart is needed. Integration Access saves what you chose, and a failed save says so.
+- Integrations → X: field names match X's developer console, and a read-only token tells you how to fix it.
+- Posting to X uses X's current API: videos upload, errors are clear, and a thread that failed partway is no longer reported as posted.
+- If an agent fails to start, its card shows the error and a Restart button instead of looking idle.
+- Every in-app "go to…" hint opens a page that exists.
+- Workflow board: issues land in the correct column, and the Marketing and Community chips use those agents' colours.
+- Chat attachments: one paperclip for every file type; the separate camera button is gone.
+- Status dots, bars and stripes use brighter colours.
+
+### Bug Fixes
+
+- **Switching accounts no longer carries the previous account's GitHub token into Create Team, or shows the previous account's activity feed.**
+- **Team sign-in no longer loads your claude.ai connectors into agent sessions.**
+- The Integrations page no longer spins forever for an account with no team.
+- Light theme: diff lines in the GitHub view are readable.
+- Chat: nested numbered lists keep their 1, 2, 3 numbering and bold text.
+- Renaming a team keeps its GitHub label in step.
+
 ## [0.57.0] - 2026-10-07
 
 ### What's New
