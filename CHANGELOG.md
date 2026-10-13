@@ -4,6 +4,30 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.59.0] - 2026-10-13
+
+### What's New
+
+- **Use your own Anthropic API key.** Paste it into the Claude row in Integrations; it's stored in your system keychain. New teams start with an API key. Teams already signed in with a Claude plan keep working as before.
+- When Claude Code asks to edit a protected file, you can approve it with one click. Requests are denied unless you approve them.
+
+### Improvements
+
+- Chat: one click on the paperclip opens one file dialog.
+- Auto-merge merges into the PR's own base branch instead of always assuming `main`.
+- A PR that was waiting on CI is released as soon as every required check has passed.
+- Freeing the build cache works on Windows.
+- Screenshots attach without the GitHub CLI and display correctly in private repositories.
+- Messages about blocked actions name the right owner.
+- Marketing items waiting on your review are no longer treated as agent work.
+
+### Bug Fixes
+
+- **An agent that had been idle for a while is no longer restarted the moment a new task reaches it.**
+- A resumed Engineer no longer raises a false "needs manual recovery" alert.
+- The build-cache check is no longer delivered twice.
+- A "stalled" health warning clears on the next on-time run.
+
 ## [0.58.0] - 2026-10-12
 
 ### What's New
