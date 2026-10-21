@@ -4,6 +4,45 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.60.0] - 2026-10-21
+
+### What's New
+
+- **Cursor is now the default engine for new teams.** Install it in one click, sign in with your Cursor account or an API key, and pick from Cursor's own model list. Claude Code remains available.
+- **Choose the engine per team, and per agent.** Settings → This team holds the team engine; switching it can also reset agents that were set to a different one. PM, Marketing and Community can now choose their engine too.
+- **Agents' file writes stay inside their workspace** on Linux and macOS, for both Cursor and Claude Code. When an agent needs to write elsewhere, it asks and you approve in the app. On Windows there is no OS sandbox yet, and the setting says so.
+- **New Create Team wizard.** Connect GitHub with a device code, choose your AI engine, then name your team. Already signed in? Add another team with "+ New team".
+- **"Start a project" cards** in Mission Control: pick the kind of project, and PM asks you a few questions before proposing a scope.
+- **Local preview.** Ask PM to show you the app running; you approve the exact commands once, and PM replies with working links.
+- **Usage by engine and model**, recorded for every agent turn.
+- **Per-agent Integration Access.** Choose which credentials each agent receives; each Integrations card shows which agents get it.
+
+### Improvements
+
+- Quick Start is hidden for new teams, and a GitHub account is required. Existing Quick Start teams keep working.
+- Agent Settings: the save bar stays pinned, you're asked before leaving with unsaved changes, and the restart notice is a toast.
+- Agent Settings: "Reset settings to defaults" (engine, model, creativity, style, integrations) is now separate from "Clear instruction changes" on the Agent.md tab, so resetting settings never touches your instructions.
+- Settings are reorganised: This team holds the repository, workspace, engine and an at-a-glance agent list. Claude sign-out is a button.
+- Workflow cards show CI as running, passed, failed, cancelled or no checks.
+- A message you send to a busy Cursor agent reaches it at the next safe point.
+- Telegram: "connected" means your chat is actually reachable, founder alerts arrive with no extra setting, and Integrations has a group field with validation.
+- Chat: tables render formatting, and "**Label:** text" lines show bold, code and links.
+- Start All / Stop All follow the team's engine and count idle agents correctly.
+- After your computer wakes from sleep, agents and the Workflow board pick up where they left off.
+- The all-time "tokens" tile and the command-bar terminal button are gone.
+
+### Bug Fixes
+
+- **macOS: Cursor sign-in no longer shows "Keychain Not Found".** Browser sign-in on a Mac is shared by every team on that Mac; use a per-team Cursor API key if a team needs a different account.
+- **"Connect with GitHub" works in installed builds.**
+- An agent's own engine setting no longer silently overrides the team engine.
+- A model is never carried over to the wrong engine after a switch.
+- Quick Start teams keep their GitHub access during long sessions.
+- A brand-new team's knowledge files are no longer reported as your unsaved edits.
+- The "template updated" banner no longer shows Operum's own changes.
+- The Creativity slider is disabled for agents on Cursor, which doesn't use it.
+- Vercel accepts project-scoped tokens.
+
 ## [0.59.0] - 2026-10-13
 
 ### What's New
