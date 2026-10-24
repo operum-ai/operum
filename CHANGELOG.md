@@ -4,6 +4,33 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.61.0] - 2026-10-24
+
+### What's New
+
+- **One-click Sign in for remote MCP servers.** Add a server such as Supabase or Linear, click Sign in, and finish in your browser. Operum stores the sign-in per team, keeps it fresh, and every agent gets the server's tools with no terminal step. The card shows "Signed in · N tools", or Reconnect when a sign-in expires.
+- **Use your own Claude Code as an agent.** Choose "Your Claude Code (attached)" as an agent's engine, start Claude Code yourself, and it takes that role: tasks arrive, its replies show in Operum's chat, and its statistics appear like any other agent's.
+- **MCP Servers are back in Integrations,** and Sentry now connects through the Sentry MCP server instead of a DSN card.
+- **Images, video, audio and PDFs inline in chat,** each with Save to Downloads.
+- **YouTube: Connect with Google,** see the connected channel, and approve a video or X post before it's published, straight from your To Do list.
+- **Spotify remote control** from the status bar.
+- **Rename a team** in Settings, and give a new team a description and colour when you create it.
+
+### Improvements
+
+- Mission Control's header tiles say what they count, and Stop All / Start All sit on the page title row on Mission Control and Agents.
+- Installing Cursor explains its Git note, shows progress, and allows up to 10 minutes.
+- Create Team reuses only the current team's GitHub sign-in, with clearer step names and a full-width Description.
+- Claude sign-in status refreshes right after you reconnect.
+- OpenAI and eBay are no longer predefined integrations; keys you already saved keep working.
+
+### Bug Fixes
+
+- Saved MCP servers now reach both Claude Code and Cursor agents.
+- macOS: no "install developer tools" dialog on a Mac without Command Line Tools.
+- macOS: sandboxed Claude Code agents get a temp folder they're allowed to write.
+- Cursor: no false "running without the Operum MCP tools" alert.
+
 ## [0.60.0] - 2026-10-21
 
 ### What's New
