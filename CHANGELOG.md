@@ -4,6 +4,53 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.62.0] - 2026-11-09
+
+### What's New
+
+- **Codex is a main engine.** Choose OpenAI's Codex for a team or a single agent. It signs in with your OpenAI API key, installs in one click, and shows its progress on issue cards like the other engines.
+- **Hand a task to your own Claude Code or Codex.** When a task suits your own coding tool, an agent can hand it off: Operum opens it in an in-app pane with the command ready, and you press Enter. The card turns yellow while it waits. When the work comes back, Operum runs its own checks before the agent opens the pull request. If nothing happens for 2 hours, you get a reminder, then a choice to run it on the team's engine or cancel it.
+- **Engines in one list.** Settings → Engines shows every engine as a card, Cursor first and marked Recommended, with a short note on why. Each card says how that engine signs in: your plan or an API key. You can be signed in to several at once and mix them per agent.
+- **Watch a Cursor agent work.** A Terminal view shows what a Cursor agent is doing as it happens, alongside the usual transcript.
+- **See whether your agents are sandboxed.** Settings shows the sandbox state each agent actually started with, not just the setting.
+- **Per-agent MCP access.** Choose which MCP servers each agent can use. Two servers of the same kind (for example a staging and a production database) now get distinct names, so an agent never silently reaches the wrong one.
+- **Timezone and Language** in Settings → You. Agents now know your timezone, so the times they tell you are in your local time.
+- **Spotify with no setup.** Play, pause and skip through your system's media controls. Connecting your own Spotify app is now an optional upgrade.
+- **PM shows deliverables right in chat.** When PM reports a finished PDF, image, video or document, it attaches a preview, including files that so far exist only on a pull request.
+
+### Improvements
+
+- **Claude Code runs on your Anthropic API key.** New teams set up Claude Code with an API key.
+- **Safer sign-in.** Operum only accepts a sign-in link it started itself, and asks "Sign in as …?" before switching accounts. Accounts sign in through the app's own flow, with a confirmed email.
+- **Codex reads your attachments.** PDFs, text documents, images, video and audio you attach reach Codex agents, and Codex shows its real context usage.
+- **Publish cards tidy up.** Published cards close by themselves, bulk actions explain what they skipped, and there is a "Reject N publish cards" action.
+- Onboarding always shows the engine step, with Cursor pre-selected and marked Recommended.
+- Switching a team's engine, or one agent's engine, restarts every agent still running on the old engine. That includes agents in the middle of a task, and the task is kept. The dialog shows "Switching…" while it runs.
+- The Agents page shows the engine an agent is actually running on, and its Usage card shows only the selected agent.
+- Team switching waits until the current operation finishes.
+- Agents no longer spend a model turn when nothing they need to act on has changed.
+- Quitting Operum stops all agents in parallel within the shutdown window, and the next start cleans up any left over from a hard exit.
+- Language & region is a searchable list, with Team details first.
+- Images over 5 MB are delivered to agents, without a false "Not delivered".
+- macOS: Open and PDF preview work for documents in chat.
+- Usage syncs with the server at most every 10 minutes.
+- Sidebar: Integrations has a plug icon, Settings a wrench.
+- "Start a project" cards sit below PM's welcome message.
+- If the server refuses a team engine change, Operum says so plainly.
+- Security hardening from our pre-launch security review, including a stricter boundary on the files agents can write.
+
+### Bug Fixes
+
+- Mixed-engine teams: a Cursor agent finishing a turn no longer restarts Claude agents in a loop when Claude's sign-in has expired, and Start All on a Cursor team no longer checks Claude at all. The message points to the API-key field.
+- An agent whose workspace needed repair no longer fails to start with "workspace link missing" when its instructions are regenerated at startup.
+- Switching engines no longer lets the old engine's session stop the new agent.
+- Agents keep their task after a context rotation, and a task in progress is no longer cleared as stale.
+- An idle agent that has already answered its task is no longer restarted as "silent".
+- A task already acknowledged by an agent is no longer sent to it again.
+- Linux: engine installers always finish and report back.
+- Codex: startup and recovery after a restart reconcile correctly, and chat shows no stray diagnostics.
+- Agents find the installed integration tool, and workspace folders are no longer misread as refusals.
+
 ## [0.61.0] - 2026-10-24
 
 ### What's New
