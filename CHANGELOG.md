@@ -4,6 +4,19 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.62.1] - 2026-11-11
+
+### Fixes
+
+- **Setup recognises a newly installed engine.** After you install Claude Code, Cursor or Codex during setup, the wizard shows it as installed right away, with no restart needed. A Refresh button re-checks on demand.
+- **Linux AppImage no longer freezes at launch** with a saved Codex team. If the window ever fails to respond at start-up, Operum recovers it, and Settings loads without blocking the app.
+- **Linux: chat previews work.** PDFs, images, video and documents attached in chat open in the preview again.
+- **GitHub sign-in shows the device code clearly**, so you can copy it without hunting for it.
+- **The right team opens on first sign-in.** If no team was saved on this machine, Operum selects your account's team instead of showing none.
+- **Clearer agent engine settings.** The AI Engine section shows only what the engine cards don't, and uses red only for real errors.
+- **"NO KEYCHAIN MODE", not "DEV MODE".** On a machine without an OS keychain, Settings and the login screen now say what is true: your credentials are in a local encrypted file. The banner links to Move to OS keychain.
+- **Security hardening** from our pre-launch penetration test: agents can no longer write through symbolic links in the folders they are allowed to change.
+
 ## [0.62.0] - 2026-11-09
 
 ### What's New
