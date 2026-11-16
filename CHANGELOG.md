@@ -4,6 +4,38 @@ All notable changes to Operum Desktop are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.63.0] - 2026-11-16
+
+### What's New
+- **Founders pipeline.** A new Founders tab on the Workflow Board holds the tasks only you can do. Agents hand those tasks back to you there and pick the work up again when you're done.
+- **Live main preview.** A running preview of `main` now keeps up with new merges, updating in place or restarting as needed.
+- **Clearer GitHub diagnostics.** Account sign-in, repository access, workflow permission and required-check problems are now reported separately, each with its own fix.
+
+### Improvements
+- Codex agents keep working when you switch between ChatGPT sign-in and an API key.
+- Codex agents now get your remote (HTTP) MCP servers too, and you can see which MCP servers each agent received.
+- Large PDFs are handed to Codex by file path when they're too big to send directly, and partial pages are labelled.
+- An agent that ends its turn with a task still open gets a nudge, and the PM is told.
+- A usage-limit pause now affects only the agents on the engine whose quota ran out.
+- Claude models with a 1M context window are shown correctly, and a refused call no longer resets the context meter to 200K.
+- On Linux, the AppImage uses your system's settings schemas first and falls back to its bundled ones.
+
+### Bug Fixes
+- Fixed "regex validation" errors on Windows by removing the shell plugin that caused them.
+- Codex on Windows now shares the team sign-in reliably, and every sign-in renewal is logged.
+- A Codex sign-in banner no longer shows on a team it doesn't belong to, and the "refreshing sign-in" banner clears when the agent resumes.
+- Codex now checks a credential the same way before it starts as it does at launch. A rejected key pauses the agent and shows how to fix it, instead of failing silently.
+- Codex and OpenCode agents now show as busy when a queued turn starts.
+- Commits made from Codex now use the commit identity you selected.
+- Agents waiting on CI are released when their PR merges or closes, and when CI checks are left stuck in the queue.
+- Recovered and restarted tasks now go to the agent that owns the work.
+- Stopped agents are reported as stopped before any work is sent to them.
+- GitHub polling recovers on its own after losing its sign-in.
+- Auto-merge no longer gives up on a PR just because another merge was in progress.
+- Required checks that never reported back are now shown instead of silently ignored.
+- Teams without a repository get a working agent setup.
+- The team label works whether you name the team or use its ID, and new PRs get it automatically.
+
 ## [0.62.1] - 2026-11-11
 
 ### Fixes
